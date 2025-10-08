@@ -724,29 +724,4 @@ export default function VYNAApp() {
         <Banner />
         <Row left={<H size={36}>Panel Seguro de Nutricionista {demoMode ? '— DEMO' : ''}</H>} right={<div style={{ display: 'flex', gap: 8 }}><Text className="text--dim">{session?.user?.email}</Text><Btn kind="secondary" onClick={logout}>{demoMode ? 'Salir demo' : 'Cerrar sesión'}</Btn></div>} />
         <NavTabs canCalendar={!!selected} go={(s) => setScreen(s)} onFood={() => setScreen('food')} />
-        <Text className="text--dim">Mostrando solo clientes asignados a tu cuenta {demoMode ? '(demo)' : '(RLS)'}.</Text>
-        {clients.length === 0 && (<Card style={{ marginTop: 12 }}><Text className="text--dim">No se encontraron clientes. Inserta datos en la tabla <code>clients</code> con tu <code>nutritionist_id</code>.</Text></Card>)}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(260px,1fr))", gap: 16, marginTop: 16 }}>
-          {clients.map((c) => {
-            const last = latestByClient[c.id];
-            return (
-              <Card key={c.id}>
-                <H size={20}>{c.name}</H>
-                <Text className="text--dim">Peso actual: {c.weight ?? '—'} kg</Text>
-                <Text className="text--dim">Calorías promedio: {c.calories ?? '—'} kcal</Text>
-                <Text className="text--dim">Motivación: {c.motivation ?? '—'}/10</Text>
-                {last && (
-                  <Text className="text--dim">Último: {last.last_date ?? '—'} · {last.last_weight ?? '—'} kg · {last.last_calories ?? '—'} kcal · {last.last_motivation ?? '—'}/10</Text>
-                )}
-                <div style={{ height: 12, margin: "12px 0" }}><ProgressBar value={(c.motivation ?? 0) * 10} /></div>
-                <div style={{ display: "flex", gap: 8 }}>
-                  <Btn onClick={() => { setSelected(c); setScreen('analytics'); if (!progressByClient[c.id]) loadProgress(c.id); }} style={{ width: "100%" }}>Ver Analítica</Btn>
-                  <Btn kind="secondary" onClick={() => { setSelected(c); setScreen('calendar'); if (!progressByClient[c.id]) loadProgress(c.id); }}>Calendario</Btn>
-                </div>
-              </Card>
-            );
-          })}
-        </div>
-        <Card style={{ marginTop: 16 }}>
-          <Row left={<H size={18}>Resumen de hoy</H>} right={<Btn kind="info" onClick={() => setScreen('food')}>Añadir comida</Btn>} />
-          <div className Crear una tabla de comparación de métricas de salud para el panel de control de VYNA, mostrando peso, calorías y motivación para cada cliente. La tabla debe ser clara, con colores que resalten los valores clave y un diseño moderno. Además, incluye un botón para ver los detalles de cada cliente.
+        <Text className="text--dim">Mostrando solo clientes asignados a tu cuenta {calorías y motivación para cada cliente. La tabla debe ser clara, con colores que resalten los valores clave y un diseño moderno. Además, incluye un botón para ver los detalles de cada cliente.
